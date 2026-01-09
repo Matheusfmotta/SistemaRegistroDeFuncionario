@@ -1,4 +1,4 @@
-package Funcionarios;
+package dev.matheus.sistemaRegistro.funcionarios;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

@@ -1,4 +1,4 @@
-package Funcionarios;
+package dev.matheus.sistemaRegistro.funcionarios;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
