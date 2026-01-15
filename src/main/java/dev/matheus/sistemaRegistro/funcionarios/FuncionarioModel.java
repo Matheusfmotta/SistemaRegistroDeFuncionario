@@ -1,3 +1,10 @@
+/*
+========================================================
+Entity (Model) → representação do banco.
+Representa a tabela tb_info_funcionarios, só o backend pode conhecer essa camada e
+nunca deve vazar para o mundo externo.
+========================================================
+*/
 package dev.matheus.sistemaRegistro.funcionarios;
 
 import jakarta.persistence.*;
