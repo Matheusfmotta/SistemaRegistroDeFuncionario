@@ -1,6 +1,8 @@
 /*
 ========================================================
 Repository → somente acesso ao banco e nenhuma regra de negócio
+
+Repository.findAll()/ Repository.findById(id)/ Repository.delete()
 ========================================================
 */
 package dev.matheus.sistemaRegistro.funcionarios;

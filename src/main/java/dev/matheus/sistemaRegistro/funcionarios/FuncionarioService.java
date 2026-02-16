@@ -21,7 +21,6 @@ package dev.matheus.sistemaRegistro.funcionarios;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -38,10 +37,17 @@ public class FuncionarioService {
                 .toList();
     }
 
-    // #BUSCAR 1 USUÁRIO PELO SEU ID
+    //BUSCAR 1 USUÁRIO PELO SEU ID
     public FuncionarioDTO listarUsuarioPorId(Long id){
         FuncionarioModel funcionario = funcionarioRepository.findById(id)
                 .orElseThrow(()-> new RuntimeException("Funcionario não encontrado"));
         return funcionarioMapper.toDTO(funcionario);
+    }
+
+    //DELETE POR ID NÃO RETORNA ENTIDADE E NEM DTO
+    public void deletarUsuarioPorId(Long id) {
+        FuncionarioModel funcionario = funcionarioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Funcionario não encontrado"));
+        funcionarioRepository.delete(funcionario);
     }
 }

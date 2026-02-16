@@ -20,10 +20,7 @@ prefixo o nome que for colocado lá.
 package dev.matheus.sistemaRegistro.funcionarios;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -39,9 +36,16 @@ public class FuncionarioController {
         return funcionarioService.listarUsuariosCadastrados();
     }
 
-    // #BUSCAR 1 USUÁRIO PELO SEU ID
+    //BUSCAR 1 USUÁRIO PELO SEU ID
     @GetMapping("/{id}")
     public FuncionarioDTO listarUsuarioPorId(@PathVariable Long id){
         return funcionarioService.listarUsuarioPorId(id);
+    }
+
+    //DELETAR POR ID
+
+    @DeleteMapping("/deletar/{id}")
+    public void deletarUsuarioPorId(@PathVariable Long id){
+         funcionarioService.deletarUsuarioPorId(id);
     }
 }
