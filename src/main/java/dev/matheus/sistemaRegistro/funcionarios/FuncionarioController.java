@@ -1,55 +1,59 @@
 /*
 ========================================================
-1)Controller recebe requisições HTTP, encaminha para o Service e devolve a resposta.
-
-2)Controller NUNCA: conversa direto com Repository, retorna Entity, converte Model em DTO ou aplica lógica.
-
-3)Controller SEMPRE: conversa com Service.
-
-4)Crie um objeto service e seu construtor (usado lombok abaixo)
-
-5)@RequestMapping geralmente em cima da classe, diz que todos métodos dessa classe vão ter como
-prefixo o nome que for colocado lá.
-
-6)@GetMapping Sempre usado nos métodos, ele é um verbo. Em CRUD você nunca da o nome da sua ação, seguindo padrão REST.
-
-7)A classe controller recebe requisições HTTP e o retorno dos métodos é convertido automaticamente em JSON.
-#Traduz (HTTP ↔ Service).
+CONTROLLER RECEBE AS REQUISIÇÕES HTTP E ENCAMINHA PARA O SERVICE QUE RETORNA UMA RESPOSTA.
+CONTROLLER TEM CONTATO COM O SERVICE, O SPRING CONVERTE AUTOMATICAMENTE OS DADOS QUE RETORNAM DO SERVICE EM JSON.
 ========================================================
 */
 package dev.matheus.sistemaRegistro.funcionarios;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/funcionarios")
+@RequestMapping("/funcionarios") //PREFIXO DOS MÉTODOS DA CLASSE ABAIXO
 public class FuncionarioController {
+
+    //OBJETO SERVICE
     private final FuncionarioService funcionarioService;
 
-    //BUSCAR TODOS USUÁRIOS E MOSTRAR EM LISTA
+    //MOSTRAR EM LISTA TODOS USUÁRIOS
     @GetMapping
     public List<FuncionarioDTO> listarUsuariosCadastrados(){
         return funcionarioService.listarUsuariosCadastrados();
     }
 
-    //BUSCAR 1 USUÁRIO PELO SEU ID
+    //BUSCAR USUÁRIO POR ID
     @GetMapping("/{id}")
     public FuncionarioDTO listarUsuarioPorId(@PathVariable Long id){
         return funcionarioService.listarUsuarioPorId(id);
     }
 
     //DELETAR POR ID
-    @DeleteMapping("/deletar/{id}")
+    @DeleteMapping("/{id}")
     public void deletarUsuarioPorId(@PathVariable Long id){
          funcionarioService.deletarUsuarioPorId(id);
     }
 
+    //CRIAR USUÁRIO
     @PostMapping
     public FuncionarioDTO criarUsuario(@RequestBody FuncionarioDTO dto){
         return funcionarioService.criarUsuario(dto);
+    }
+
+    //ATUALIZAR TODAS INFORMAÇÕES DO USUÁRIO
+    @PutMapping("/{id}")
+    public FuncionarioDTO atualizarUsuario(@PathVariable Long id, @RequestBody FuncionarioDTO dto){
+        return funcionarioService.atualizarUsuario(id, dto);
+    }
+
+    //ATUALIZAR PARCIALMENTE AS INFORMAÇÕES DO USUÁRIO
+    @PatchMapping("/{id}")
+    public FuncionarioDTO atualizarUsuarioParcial(
+            @PathVariable Long id,
+            @RequestBody FuncionarioDTO dto) {
+
+        return funcionarioService.atualizarUsuarioParcial(id, dto);
     }
 }
