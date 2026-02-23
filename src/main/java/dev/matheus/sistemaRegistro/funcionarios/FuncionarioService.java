@@ -50,4 +50,11 @@ public class FuncionarioService {
                 .orElseThrow(() -> new RuntimeException("Funcionario não encontrado"));
         funcionarioRepository.delete(funcionario);
     }
+
+    //CREATE FUNCIONARIO
+    public FuncionarioDTO criarUsuario(FuncionarioDTO dto){
+        FuncionarioModel funcionario = funcionarioMapper.toModel(dto);
+        FuncionarioModel salvo = funcionarioRepository.save(funcionario);
+        return funcionarioMapper.toDTO(salvo);
+    }
 }

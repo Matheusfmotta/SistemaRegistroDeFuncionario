@@ -43,9 +43,13 @@ public class FuncionarioController {
     }
 
     //DELETAR POR ID
-
     @DeleteMapping("/deletar/{id}")
     public void deletarUsuarioPorId(@PathVariable Long id){
          funcionarioService.deletarUsuarioPorId(id);
+    }
+
+    @PostMapping
+    public FuncionarioDTO criarUsuario(@RequestBody FuncionarioDTO dto){
+        return funcionarioService.criarUsuario(dto);
     }
 }
