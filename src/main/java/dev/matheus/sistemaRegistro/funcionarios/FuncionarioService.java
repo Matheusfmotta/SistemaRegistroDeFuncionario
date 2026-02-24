@@ -1,7 +1,7 @@
 /*
 ========================================================
 SERVICE RECEBE OS DADOS JÁ TRATADOS PELO CONTROLLER E APLICAR A LÓGICA E REGRAS DE NEGÓCIO.
-SERVICE COORQUESTRA O REPOSITORY(BANCO DE DADOS) E MAPPER(CONVERSÕES)
+SERVICE ORQUESTRA O REPOSITORY(BANCO DE DADOS) E MAPPER(CONVERSÕES)
 ========================================================
 */
 package dev.matheus.sistemaRegistro.funcionarios;
